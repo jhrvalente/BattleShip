@@ -12,12 +12,6 @@
 #define CENTER_WIDTH 	50
 #define CENTER_HEIGHT 	50
 
-gboolean on_draw_event(GtkWidget *widget, cairo_t * cr, gpointer user_data){
-void renderBoard(cairo_t *);
-  renderBoard(cr);
-return TRUE;
-}
-
 void renderUnit(cairo_t * cr, int x, int y, int width, int height){
 	cairo_rectangle(cr, x, y, width, height);
 	cairo_set_source_rgb(cr, 0, 1, 1);
