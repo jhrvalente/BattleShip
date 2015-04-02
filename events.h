@@ -1,0 +1,11 @@
+void on_draw_event(GtkWidget *, cairo_t *, gpointer);
+void btn_destroyer_clicked(GtkWidget *, gpointer);
+void btn_submarine_clicked(GtkWidget *, gpointer);
+void btn_battleship_clicked(GtkWidget *, gpointer);
+void btn_cruiser_clicked(GtkWidget *, gpointer);
+void btn_carrier_clicked(GtkWidget *, gpointer);
+void btn_clear_clicked(GtkWidget *, gpointer);
+void btn_mouse_pressed(GtkWidget *, GdkEventKey *);
+void btn_mouse_released(GtkWidget *, GdkEventKey *);
+void txtfield_action(GtkWidget *, GdkEventKey *);
+void mouse_moved(GtkWidget *, GdkEventKey *);
