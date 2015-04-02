@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
 #include "board.h"
+#include "events.h"
 
 #define WINDOW_WIDTH 	670
 #define WINDOW_HEIGHT 	640
@@ -30,6 +31,7 @@ GtkWidget *btn_cruiser;
 GtkWidget *img_cruiser;
 GtkWidget *btn_carrier;
 GtkWidget *img_carrier;
+GtkWidget *img_clear;
 GtkWidget *btn_clear;
 GtkWidget *player_field;
 GtkWidget *lbl_console;
@@ -47,6 +49,8 @@ void createWindow(){
   void placeTextfield(void);
   void placeConsole(void);
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  GtkSettings *default_settings = gtk_settings_get_default();
+  g_object_set(default_settings, "gtk-button-images", TRUE, NULL);
   gtk_widget_override_background_color(window, 0, &black);
   setPosition(WINDOW_POSITION);
   setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -97,7 +101,7 @@ void createWindow(){
 	f_boards = gtk_frame_new("");
   gtk_widget_set_size_request (f_boards, 620, 300);
   gtk_container_add(GTK_CONTAINER(vbox), f_boards);
-  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 70);
+  hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 140);
   gtk_container_add(GTK_CONTAINER(f_boards), hbox);
   gtk_container_add(GTK_CONTAINER(hbox), player_board);
   gtk_container_add(GTK_CONTAINER(hbox), enemy_board);
@@ -110,12 +114,24 @@ void createWindow(){
  	f_buttons = gtk_frame_new("");
   gtk_widget_set_size_request (f_buttons, 620, 110);
  	grid=gtk_grid_new();
-	btn_destroyer=gtk_button_new_with_label("DESTROYER");
-	btn_submarine=gtk_button_new_with_label("SUBMARINE");
-	btn_battleship=gtk_button_new_with_label("BATTLESHIP");
-	btn_cruiser=gtk_button_new_with_label("CRUISER");
-	btn_carrier=gtk_button_new_with_label("CARRIER");
-  btn_clear=gtk_button_new_with_label("CLEAR");
+  img_battleship=gtk_image_new_from_file("res/battleship.png");
+  img_submarine=gtk_image_new_from_file("res/submarine.png");
+  img_carrier=gtk_image_new_from_file("res/carrier.png");
+  img_destroyer=gtk_image_new_from_file("res/destroyer.png");
+  img_cruiser=gtk_image_new_from_file("res/cruiser.png");
+  img_clear=gtk_image_new_from_file("res/clear.png");
+	btn_destroyer=gtk_button_new_with_label("  DESTROYER");
+	btn_submarine=gtk_button_new_with_label("  SUBMARINE");
+	btn_battleship=gtk_button_new_with_label("  BATTLESHIP");
+	btn_cruiser=gtk_button_new_with_label("  CRUISER");
+	btn_carrier=gtk_button_new_with_label("  CARRIER");
+  btn_clear=gtk_button_new_with_label("  CLEAR");
+  gtk_button_set_image((GtkButton *)btn_battleship, img_battleship);
+  gtk_button_set_image((GtkButton *)btn_submarine, img_submarine);
+  gtk_button_set_image((GtkButton *)btn_carrier, img_carrier);
+  gtk_button_set_image((GtkButton *)btn_destroyer, img_destroyer);
+  gtk_button_set_image((GtkButton *)btn_cruiser, img_cruiser);
+  gtk_button_set_image((GtkButton *)btn_clear, img_clear);
 	gtk_grid_set_column_spacing((GtkGrid *) grid, GRID_SPACE);
   gtk_grid_set_row_spacing((GtkGrid *) grid, GRID_SPACE);
 	gtk_grid_attach((GtkGrid *) grid, btn_destroyer, 0, 0, 1, 1);
@@ -133,6 +149,15 @@ void createWindow(){
 	gtk_container_add(GTK_CONTAINER(vbox), f_buttons);
   gtk_widget_set_valign (grid, GTK_ALIGN_START);
 	gtk_container_add(GTK_CONTAINER(f_buttons), grid);
+  g_signal_connect(G_OBJECT(btn_destroyer), "clicked", G_CALLBACK(btn_destroyer_clicked), NULL); 
+  g_signal_connect(G_OBJECT(btn_submarine), "clicked", G_CALLBACK(btn_submarine_clicked), NULL); 
+  g_signal_connect(G_OBJECT(btn_cruiser), "clicked", G_CALLBACK(btn_cruiser_clicked), NULL); 
+  g_signal_connect(G_OBJECT(btn_carrier), "clicked", G_CALLBACK(btn_carrier_clicked), NULL); 
+  g_signal_connect(G_OBJECT(btn_clear), "clicked", G_CALLBACK(btn_clear_clicked), NULL); 
+  g_signal_connect(G_OBJECT(player_board), "pressed", G_CALLBACK(btn_mouse_pressed), NULL);
+  g_signal_connect(G_OBJECT(player_board), "released", G_CALLBACK(btn_mouse_released), NULL);
+  g_signal_connect(G_OBJECT(player_field), "entered", G_CALLBACK(txtfield_action), NULL);
+  g_signal_connect(G_OBJECT(player_board), "moved", G_CALLBACK(mouse_moved), NULL);
  }
 
  void placeConsole(){
