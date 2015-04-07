@@ -114,12 +114,12 @@ void createWindow(){
  	f_buttons = gtk_frame_new("");
   gtk_widget_set_size_request (f_buttons, 620, 110);
  	grid=gtk_grid_new();
-  img_battleship=gtk_image_new_from_file("res/battleship.png");
-  img_submarine=gtk_image_new_from_file("res/submarine.png");
-  img_carrier=gtk_image_new_from_file("res/carrier.png");
-  img_destroyer=gtk_image_new_from_file("res/destroyer.png");
-  img_cruiser=gtk_image_new_from_file("res/cruiser.png");
-  img_clear=gtk_image_new_from_file("res/clear.png");
+  img_battleship=gtk_image_new_from_file("res/images/battleship.png");
+  img_submarine=gtk_image_new_from_file("res/images/submarine.png");
+  img_carrier=gtk_image_new_from_file("res/images/carrier.png");
+  img_destroyer=gtk_image_new_from_file("res/images/destroyer.png");
+  img_cruiser=gtk_image_new_from_file("res/images/cruiser.png");
+  img_clear=gtk_image_new_from_file("res/images/clear.png");
 	btn_destroyer=gtk_button_new_with_label("  DESTROYER");
 	btn_submarine=gtk_button_new_with_label("  SUBMARINE");
 	btn_battleship=gtk_button_new_with_label("  BATTLESHIP");

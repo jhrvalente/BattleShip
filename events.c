@@ -10,7 +10,7 @@ void renderBoard(cairo_t *);
 }
 
 void btn_destroyer_clicked(GtkWidget *widget, gpointer data){
-	img=gtk_image_new_from_file("res/destroyer.png");
+	img=gtk_image_new_from_file("res/images/destroyer.png");
 	gtk_widget_show(img);
 	/* load image of destroyer and make it appear next to the pointer of the mouse */
 
