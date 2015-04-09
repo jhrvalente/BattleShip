@@ -1,6 +1,7 @@
 #include <cairo.h>
 #include <gtk/gtk.h>
 #include "board.h"
+#include "window.h"
 
 GtkWidget *img;
 
@@ -10,29 +11,37 @@ void renderBoard(cairo_t *);
 }
 
 void btn_destroyer_clicked(GtkWidget *widget, gpointer data){
-	img=gtk_image_new_from_file("res/images/destroyer.png");
-	gtk_widget_show(img);
-	/* load image of destroyer and make it appear next to the pointer of the mouse */
-
+img=gtk_image_set_from_file("/res/images/destroyer.png");
+g_print("destroyer clicked\n");	
+/* load image of destroyer and make it appear next to the pointer of the mouse */
 }
 
 void btn_submarine_clicked(GtkWidget *widget, gpointer data){
+	img=gtk_image_new_from_file("/res/images/submarine.png");
+	g_print("submarine clicked\n");
 	/* load image of submarine and make it appear next to the pointer of the mouse */
 }
 
 void btn_battleship_clicked(GtkWidget *widget, gpointer data){
+	img=gtk_image_new_from_file("/res/images/battleship.png");
+	g_print("battleship clicked\n");
 	/* load image of battleship and make it appear next to the pointer of the mouse */
 }
 
 void btn_cruiser_clicked(GtkWidget *widget, gpointer data){
+	img=gtk_image_new_from_file("/res/images/cruiser.png");
+	g_print("cruiser clicked\n");
 	/* load image of cruiser and make it appear next to the pointer of the mouse */
 }
 
 void btn_carrier_clicked(GtkWidget *widget, gpointer data){
+	img=gtk_image_new_from_file("/res/images/carrier.png");
+	g_print("carrier clicked\n");
 	/* load image of carrier and make it appear next to the pointer of the mouse */
 }
 
 void btn_clear_clicked(GtkWidget *widget, gpointer data){
+	g_print("clear clicked\n");
 }
 
 void btn_mouse_pressed(GtkWidget *widget, GdkEventKey *event){
@@ -55,6 +64,9 @@ void txtfield_action(GtkWidget *widget, GdkEventKey *event){
 	- get the cell located at those coordinates and place img target on that cell on enemy board */
 }
 
-void mouse_moved(GtkWidget *widget, GdkEventKey *event){
+void mouse_moved(GtkWidget *widget, GdkEventMotion *event){
+	g_print("motion\n");
 	/* move the selected image as the pointer of the mouse moves */
 }
+
+
