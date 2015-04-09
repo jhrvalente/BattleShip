@@ -94,11 +94,12 @@ void createWindow(){
  }
 
  void placeBoards(){
- 	player_board = gtk_drawing_area_new();
- 	enemy_board = gtk_drawing_area_new();
- 	gtk_widget_set_size_request (player_board, BOARD_WIDTH, BOARD_HEIGHT);
-	gtk_widget_set_size_request (enemy_board, BOARD_WIDTH, BOARD_HEIGHT);
-	f_boards = gtk_frame_new("");
+  player_board = gtk_drawing_area_new();
+  gtk_widget_add_events(player_board, GDK_POINTER_MOTION_MASK |GDK_POINTER_MOTION_HINT_MASK);
+  enemy_board = gtk_drawing_area_new();
+  gtk_widget_set_size_request (player_board, BOARD_WIDTH, BOARD_HEIGHT);
+  gtk_widget_set_size_request (enemy_board, BOARD_WIDTH, BOARD_HEIGHT);
+  f_boards = gtk_frame_new("");
   gtk_widget_set_size_request (f_boards, 620, 300);
   gtk_container_add(GTK_CONTAINER(vbox), f_boards);
   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 140);
@@ -151,13 +152,11 @@ void createWindow(){
 	gtk_container_add(GTK_CONTAINER(f_buttons), grid);
   g_signal_connect(G_OBJECT(btn_destroyer), "clicked", G_CALLBACK(btn_destroyer_clicked), NULL); 
   g_signal_connect(G_OBJECT(btn_submarine), "clicked", G_CALLBACK(btn_submarine_clicked), NULL); 
+  g_signal_connect(G_OBJECT(btn_battleship), "clicked", G_CALLBACK(btn_battleship_clicked), NULL); 
   g_signal_connect(G_OBJECT(btn_cruiser), "clicked", G_CALLBACK(btn_cruiser_clicked), NULL); 
   g_signal_connect(G_OBJECT(btn_carrier), "clicked", G_CALLBACK(btn_carrier_clicked), NULL); 
   g_signal_connect(G_OBJECT(btn_clear), "clicked", G_CALLBACK(btn_clear_clicked), NULL); 
-  g_signal_connect(G_OBJECT(player_board), "pressed", G_CALLBACK(btn_mouse_pressed), NULL);
-  g_signal_connect(G_OBJECT(player_board), "released", G_CALLBACK(btn_mouse_released), NULL);
-  g_signal_connect(G_OBJECT(player_field), "entered", G_CALLBACK(txtfield_action), NULL);
-  g_signal_connect(G_OBJECT(player_board), "moved", G_CALLBACK(mouse_moved), NULL);
+  g_signal_connect(G_OBJECT(player_board), "motion-notify-event", G_CALLBACK(mouse_moved), NULL); 
  }
 
  void placeConsole(){
