@@ -75,12 +75,12 @@ char termInitData[] = {
 
 void initTerm(void)
 {
-    int i, j, k;
-    for (i=0; i<27; i++){
-        for (j=0; j<38; j++){
-            k = 38*i + j;
-            printf("\xe2\x96%c", termInitData[k]);
-        }
+int i, j, k;
+
+    for (i=0; i<27; i++)
+    {
+        for (j=0; j<38; j++) printf("\xe2\x96%c", termInitData[38*i + j]);
         printf("\n");
     }
+
 }

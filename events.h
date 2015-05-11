@@ -1,14 +1,14 @@
-cairo_surface_t *surface;
-cairo_t *cr;
+int selButton;
 GdkPixbuf *pix;
 GtkWidget *img;
 GtkAllocation allocation;
+cairo_surface_t *surface;
+cairo_t *cr;
 GError *pixbuf_error;
-int selButton;
 
 void on_draw_event(GtkWidget *, cairo_t *, gpointer);
 void redraw(cairo_t *, gdouble, gdouble);
-gboolean btn_destroyer_clicked(GtkWidget *, gpointer);
+void btn_destroyer_clicked(GtkWidget *, gpointer);
 void btn_submarine_clicked(GtkWidget *, gpointer);
 void btn_battleship_clicked(GtkWidget *, gpointer);
 void btn_cruiser_clicked(GtkWidget *, gpointer);
