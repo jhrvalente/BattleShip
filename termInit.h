@@ -1,1 +1,0 @@
-void initTerm(void);
